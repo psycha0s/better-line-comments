@@ -4,6 +4,7 @@
 	"description": "Toggles line comments in the first column",
 	"version": "1.0.0",
 	"publisher": "antonkalmykov",
+	"repository": "https://github.com/psycha0s/better-line-comments",
 	"engines": {
 		"vscode": "^1.60.0"
 	},
