@@ -48,8 +48,12 @@ function activate(context) {
 					lastLine = pos.line - 1;
 			}
 			else {
-				await vscode.commands.executeCommand(
-					'cursorMove', { to: 'down', by: 'line', value: 1, select: false });
+				let config = vscode.workspace.getConfiguration('better-line-comments');
+
+				if(config.get('moveCaretDown')) {
+					await vscode.commands.executeCommand('cursorMove',
+							{ to: 'down', by: 'line', value: 1, select: false });
+				}
 			}
 
 			var offsets = [];

@@ -21,7 +21,17 @@
 				"command": "better-line-comments.toggle",
 				"title": "Better Line Comments: Toggle line comment"
 			}
-		]
+		],
+		"configuration": {
+			"title": "Better Line Comments",
+			"properties": {
+				"better-line-comments.moveCaretDown": {
+					"type": "boolean",
+					"default": true,
+					"description": "Move caret down after comment if there is no selection."
+				}
+			}
+		}
 	},
 	"devDependencies": {
 		"@types/vscode": "^1.60.0",
