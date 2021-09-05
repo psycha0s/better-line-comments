@@ -60,7 +60,7 @@ function activate(context) {
 				let offset = commentOffset(line.text);
 				offsets.push(offset);
 
-				if(offset < 0) {
+				if(offset >= 0) {
 					diff++;
 				}
 				else {
@@ -69,14 +69,7 @@ function activate(context) {
 			}
 
 			await editor.edit(editBuilder => {
-				if(diff >= 0) {
-					for(let index = firstLine; index <= lastLine; ++index) {
-						let line = editor.document.lineAt(index);
-						let pos  = line.range.start;
-						editBuilder.insert(pos, commentString);
-					}
-				}
-				else {
+				if(diff == offsets.length) {
 					for(let lineIndex = firstLine; lineIndex <= lastLine; ++lineIndex) {
 						let line  = editor.document.lineAt(lineIndex);
 						let index = line.lineNumber - firstLine;
@@ -86,6 +79,13 @@ function activate(context) {
 							let end = pos.translate(0, commentLength);
 							editBuilder.delete(new vscode.Range(pos, end));
 						}
+					}
+				}
+				else {
+					for(let index = firstLine; index <= lastLine; ++index) {
+						let line = editor.document.lineAt(index);
+						let pos  = line.range.start;
+						editBuilder.insert(pos, commentString);
 					}
 				}
 			})
