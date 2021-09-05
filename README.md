@@ -2,4 +2,8 @@
 
 Toggles line comments in the first column.
 
-Use `better-line-comments.toggle` to toggle line comments in C/C++ files.
+## Usage:
+
+- Use `better-line-comments.toggle` command to toggle line comments.
+
+- Use `better-line-comments.moveCaretDown` option to set whether the caret should be moved one line down automatically after togging a comment.
