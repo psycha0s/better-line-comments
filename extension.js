@@ -43,6 +43,9 @@ const commentById = {
  */
 function activate(context) {
 	let disposable = vscode.commands.registerCommand('better-line-comments.toggle', async function () {
+		let config = vscode.workspace.getConfiguration('better-line-comments');
+		const moveCaretDown = config.get('moveCaretDown');
+
 		const editor     = vscode.window.activeTextEditor;
 		const document   = editor.document;
 		const languageId = document.languageId;
@@ -55,6 +58,12 @@ function activate(context) {
 
 		if(!commentString) {
 			await vscode.commands.executeCommand("editor.action.commentLine");
+			const selections = editor.selections;
+
+			if(selections.length == 1 && selections[0].isEmpty && moveCaretDown) {
+				await vscode.commands.executeCommand('cursorMove',
+						{ to: 'down', by: 'line', value: 1, select: false });
+			}
 			return;
 		}
 
@@ -86,9 +95,7 @@ function activate(context) {
 					lastLine = pos.line - 1;
 			}
 			else {
-				let config = vscode.workspace.getConfiguration('better-line-comments');
-
-				if(config.get('moveCaretDown')) {
+				if(editor.selections.length == 1 && moveCaretDown) {
 					await vscode.commands.executeCommand('cursorMove',
 							{ to: 'down', by: 'line', value: 1, select: false });
 				}
