@@ -1,5 +1,42 @@
 const vscode = require('vscode');
-const languageConfig = require('./languageConfig');
+
+const commentById = {
+	'bat': 'REM',
+	'c': '//',
+	'clojure': ';;',
+	'cmake': '#',
+	'coffeescript': '#',
+	'cpp': '//',
+	'csharp': '//',
+	'd': '//',
+	'fsharp': '//',
+	'go': '//',
+	'groovy': '//',
+	'ini': ';',
+	'java': '//',
+	'javascript': '//',
+	'json': '//',
+	'jsonc': '//',
+	'lua': '--',
+	'makefile': '#',
+	'objective-c': '//',
+	'objective-cpp': '//',
+	'perl ': '#',
+	'perl6': '#',
+	'php': '//',
+	'powershell': '#',
+	'python': '#',
+	'r': '#',
+	'ruby': '#',
+	'rust': '//',
+	'shellscript': '#',
+	'sql': '--',
+	'swift': '//',
+	'typescript': '//',
+	'vb': '\'',
+	'yaml': '#'
+};
+
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -13,7 +50,8 @@ function activate(context) {
 		if(!editor)
 			return;
 
-		const commentString = languageConfig.get(languageId, 'comments.lineComment');
+		console.log(languageId);
+		const commentString = commentById[languageId];
 
 		if(!commentString) {
 			await vscode.commands.executeCommand("editor.action.commentLine");
