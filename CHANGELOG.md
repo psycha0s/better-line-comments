@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2021-09-07
+### Added
+- Move cursor down only in case of a single selection.
+
+### Changed
+- Rollback to a dictionary with comment strings because the previous hack doesn't work in remote mode.
+
+
 ## [1.3.0] - 2021-09-05
 ### Added
 - An option `better-line-comments.moveCaretDown` for moving caret down after toggling a line comment in case there is no selection.
