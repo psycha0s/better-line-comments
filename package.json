@@ -3,7 +3,7 @@
 	"displayName": "Better Line Comments",
 	"description": "Toggles line comments in the first column",
 	"icon": "images/icon.png",
-	"version": "1.3.0",
+	"version": "1.4.0",
 	"publisher": "psycha0s",
 	"repository": "https://github.com/psycha0s/better-line-comments",
 	"engines": {
